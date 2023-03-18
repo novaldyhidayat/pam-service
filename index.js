@@ -1,9 +1,7 @@
 const express = require('express');
+const functions = require('firebase-functions');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
-const config = require('./config/db');
 
 const app = express();
 const port = 3000;
@@ -49,3 +47,5 @@ app.use(function (err, req, res, next) {
 app.listen(port, () => {
       console.log(`Server running on port ${port}`);
 });
+
+exports.app = functions.https.onRequest(app);
